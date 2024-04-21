@@ -1,0 +1,21 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/NeueMontreal-Bold.otf",
+      "sha1": "8a9ff2b61316994234dae5eaaaa2b99de1b29205"
+    },
+    {
+      "path": "src/assets/fonts/NeueMontreal-Light.otf",
+      "sha1": "5177d0022e6ebb29eeb5afa31a81e10916f42c82"
+    },
+    {
+      "path": "src/assets/fonts/NeueMontreal-Medium.otf",
+      "sha1": "a1fde8e729ce0e78511dc692c8390836db6b8d92"
+    },
+    {
+      "path": "src/assets/fonts/NeueMontreal-Regular.otf",
+      "sha1": "864b3c35552d8c45b0a4467d8262a111f103f015"
+    }
+  ]
+}
