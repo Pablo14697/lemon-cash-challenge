@@ -1,9 +1,16 @@
 // Navigation Component
 import Navigation from './src/navigation';
 
+// Providers
+import Providers from './src/providers';
+
 // Translations
 import './src/translations/i18n';
 
-const App = () => <Navigation />;
+const App = () => (
+  <Providers>
+    <Navigation />
+  </Providers>
+);
 
 export default App;
