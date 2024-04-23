@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Item = ({ info, onPress }: Props) => {
-  const { name, id, symbol, price, percentChange24hs } = info;
+  const { name, id, symbol, price } = info;
   const uri = `${CRIPTO_CURRENCY_LOGO_ENDPOINT}/${id}.png`;
   const currentPrice = price.toFixed(2);
 
@@ -43,14 +43,10 @@ const Item = ({ info, onPress }: Props) => {
             width: '40%',
             justifyContent: 'space-around',
           }}>
-          <View style={{ flexDirection: 'row', gap: 5, alignItems: 'center' }}>
-            <Text style={{ fontFamily: 'NeueMontreal-Medium', fontSize: 16 }}>
-              {symbol}
-            </Text>
-            <Text style={{ color: '#59b37e', fontSize: 12 }}>
-              {percentChange24hs.toFixed(2)}%
-            </Text>
-          </View>
+          <Text style={{ fontFamily: 'NeueMontreal-Medium', fontSize: 16 }}>
+            {symbol}
+          </Text>
+
           <Text style={{ color: '#888888', fontSize: 14 }}>{name}</Text>
         </View>
         <View

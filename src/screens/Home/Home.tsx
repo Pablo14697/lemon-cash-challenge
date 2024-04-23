@@ -10,7 +10,6 @@ import { Item } from './components';
 // Hooks
 import { useNavigation } from '../../navigation/hooks';
 
-
 // Utils
 import { API_KEY, CRIPTO_CURRENCIES_ENDPOINT } from '../../../hardcoded';
 
