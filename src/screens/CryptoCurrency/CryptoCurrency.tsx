@@ -21,9 +21,9 @@ import {
 } from '../../../hardcoded';
 
 // Context
-import { CriptoCurrencyContext } from '../../providers/CriptoCurrencyProvider/CriptoCurrencyProvider';
+import { CryptoCurrencyContext } from '../../providers/CryptoCurrencyProvider/CryptoCurrencyProvider';
 
-const CriptoCurrency = () => {
+const CryptoCurrency = () => {
   const [loading, setLoading] = useState(false);
   const [indexPercentSelected, setIndexPercentSelected] = useState(0);
   const [info, setInfo] = useState({
@@ -38,12 +38,12 @@ const CriptoCurrency = () => {
       },
     },
   });
-  const { criptoCurrencyInfo } = useContext(CriptoCurrencyContext);
+  const { cryptoCurrencyInfo } = useContext(CryptoCurrencyContext);
 
-  const fetchCriptoCurrency = async () => {
+  const fetchCryptoCurrency = async () => {
     try {
       const response = await fetch(
-        `${CRIPTO_CURRENCY_INFO_ENDPOINT}?symbol=${criptoCurrencyInfo?.symbol}`,
+        `${CRIPTO_CURRENCY_INFO_ENDPOINT}?symbol=${cryptoCurrencyInfo?.symbol}`,
         {
           headers: {
             'X-CMC_PRO_API_KEY': API_KEY,
@@ -52,7 +52,7 @@ const CriptoCurrency = () => {
       );
 
       const data = await response.json();
-      setInfo(data?.data?.[criptoCurrencyInfo?.symbol]);
+      setInfo(data?.data?.[cryptoCurrencyInfo?.symbol]);
     } catch (error) {
       console.log(error);
     }
@@ -61,10 +61,10 @@ const CriptoCurrency = () => {
 
   useEffect(() => {
     if (!info.id) {
-      setLoading(false);
+      setLoading(true);
     }
 
-    fetchCriptoCurrency();
+    fetchCryptoCurrency();
   }, []);
 
   const quote = info?.quote?.USD;
@@ -104,7 +104,7 @@ const CriptoCurrency = () => {
           refreshControl={
             <RefreshControl
               refreshing={loading}
-              onRefresh={fetchCriptoCurrency}
+              onRefresh={fetchCryptoCurrency}
             />
           }>
           <View
@@ -116,7 +116,7 @@ const CriptoCurrency = () => {
             <View style={{ flexDirection: 'row', gap: 10 }}>
               <Image
                 source={{
-                  uri: `${CRIPTO_CURRENCY_LOGO_ENDPOINT}/${criptoCurrencyInfo?.id}.png`,
+                  uri: `${CRIPTO_CURRENCY_LOGO_ENDPOINT}/${cryptoCurrencyInfo?.id}.png`,
                 }}
                 style={{
                   height: 35,
@@ -211,4 +211,4 @@ const CriptoCurrency = () => {
   );
 };
 
-export default CriptoCurrency;
+export default CryptoCurrency;

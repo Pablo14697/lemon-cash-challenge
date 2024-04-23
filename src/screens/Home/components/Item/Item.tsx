@@ -5,10 +5,10 @@ import { Image, Pressable, Text, View } from 'react-native';
 import { CRIPTO_CURRENCY_LOGO_ENDPOINT } from '../../../../../hardcoded';
 
 // Types
-import { CriptoCurrencyInfoType } from '../../../../types/CriptoCurrency';
+import { CryptoCurrencyInfoType } from '../../../../types/CryptoCurrency';
 
 interface Props {
-  info: CriptoCurrencyInfoType;
+  info: CryptoCurrencyInfoType;
   onPress: () => void;
 }
 

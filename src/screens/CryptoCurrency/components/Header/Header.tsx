@@ -8,48 +8,48 @@ import { Image, Pressable, SafeAreaView, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 // Context
-import { CriptoCurrencyContext } from '../../../../providers/CriptoCurrencyProvider/CriptoCurrencyProvider';
+import { CryptoCurrencyContext } from '../../../../providers/CryptoCurrencyProvider/CryptoCurrencyProvider';
 
 // Assets
 import { BackArrow, Hearth, HearthPressed } from './assets';
 
 // Utils
 import {
-  setPreferredCriptoCurrencies,
-  removePreferredCriptoCurrencies,
-  getPreferredCriptoCurrencies,
+  setPreferredCryptoCurrencies,
+  removePreferredCryptoCurrencies,
+  getPreferredCryptoCurrencies,
 } from './utils/preferredCurrencyStorage';
 
 // Types
-import { CriptoCurrencyInfoType } from '../../../../types/CriptoCurrency';
+import { CryptoCurrencyInfoType } from '../../../../types/CryptoCurrency';
 
 const Header = () => {
   const navigation = useNavigation();
-  const { criptoCurrencyInfo } = useContext(CriptoCurrencyContext);
+  const { cryptoCurrencyInfo } = useContext(CryptoCurrencyContext);
   const [isPreferred, setIsPreferred] = useState(false);
 
   const handleIsPreferred = async () => {
     setIsPreferred(!isPreferred);
     if (!isPreferred) {
-      await setPreferredCriptoCurrencies(criptoCurrencyInfo);
+      await setPreferredCryptoCurrencies(cryptoCurrencyInfo);
     } else {
-      return await removePreferredCriptoCurrencies(criptoCurrencyInfo);
+      return await removePreferredCryptoCurrencies(cryptoCurrencyInfo);
     }
     await fetchIsPreferred();
   };
 
   const fetchIsPreferred = async () => {
-    const preferredCriptoCurrencies = await getPreferredCriptoCurrencies();
-    const isPreferred = preferredCriptoCurrencies?.some(
-      (criptoCurrency: CriptoCurrencyInfoType) =>
-        criptoCurrency.id === criptoCurrencyInfo.id,
+    const preferredCryptoCurrencies = await getPreferredCryptoCurrencies();
+    const isPreferred = preferredCryptoCurrencies?.some(
+      (cryptoCurrency: CryptoCurrencyInfoType) =>
+        cryptoCurrency.id === cryptoCurrencyInfo.id,
     );
     setIsPreferred(isPreferred);
   };
 
   useEffect(() => {
     fetchIsPreferred();
-  }, [criptoCurrencyInfo.id]);
+  }, [cryptoCurrencyInfo.id]);
 
   return (
     <SafeAreaView
@@ -79,7 +79,7 @@ const Header = () => {
             justifyContent: 'center',
           }}>
           <Text style={{ fontFamily: 'NeueMontreal-Medium', fontSize: 16 }}>
-            {criptoCurrencyInfo.symbol}
+            {cryptoCurrencyInfo.symbol}
           </Text>
           <Text
             style={{
@@ -87,7 +87,7 @@ const Header = () => {
               color: '#888888',
               fontSize: 14,
             }}>
-            {criptoCurrencyInfo.name}
+            {cryptoCurrencyInfo.name}
           </Text>
         </View>
         <Pressable

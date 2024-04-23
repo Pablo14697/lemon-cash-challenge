@@ -1,4 +1,4 @@
-export type CriptoCurrencyInfoType = {
+export type CryptoCurrencyInfoType = {
   id: string;
   name: string;
   symbol: string;

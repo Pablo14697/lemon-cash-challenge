@@ -1,10 +1,10 @@
 // Providers
-import CriptoCurrencyProvider from './CriptoCurrencyProvider';
+import CryptoCurrencyProvider from './CryptoCurrencyProvider';
 import AuthProvider from './AuthProvider';
 
 const Providers = ({ children }: { children: React.ReactNode }) => (
   <AuthProvider>
-    <CriptoCurrencyProvider>{children}</CriptoCurrencyProvider>
+    <CryptoCurrencyProvider>{children}</CryptoCurrencyProvider>
   </AuthProvider>
 );
 

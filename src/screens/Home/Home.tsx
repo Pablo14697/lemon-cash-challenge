@@ -14,14 +14,14 @@ import { useNavigation } from '../../navigation/hooks';
 import { API_KEY, CRIPTO_CURRENCIES_ENDPOINT } from '../../../hardcoded';
 
 // Context
-import { CriptoCurrencyContext } from '../../providers/CriptoCurrencyProvider/CriptoCurrencyProvider';
+import { CryptoCurrencyContext } from '../../providers/CryptoCurrencyProvider/CryptoCurrencyProvider';
 
 // Types
-import { CriptoCurrencyInfoType } from '../../types/CriptoCurrency';
+import { CryptoCurrencyInfoType } from '../../types/CryptoCurrency';
 
 const DEFAULT_LIMIT = 10;
 
-type CriptoCurrencyResponse = {
+type CryptoCurrencyResponse = {
   id: string;
   name: string;
   symbol: string;
@@ -33,22 +33,22 @@ type CriptoCurrencyResponse = {
   };
 };
 type Response = {
-  data: CriptoCurrencyResponse[];
+  data: CryptoCurrencyResponse[];
 };
 
 const Home = () => {
-  const [criptoCurrencies, setCriptoCurrencies] = useState<
-    CriptoCurrencyInfoType[]
+  const [cryptoCurrencies, setCryptoCurrencies] = useState<
+    CryptoCurrencyInfoType[]
   >([]);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [start, setStart] = useState(1);
 
-  const { setCriptoCurrencyInfo } = useContext(CriptoCurrencyContext);
+  const { setCryptoCurrencyInfo } = useContext(CryptoCurrencyContext);
 
   const navigation = useNavigation();
 
-  const fetchCriptoCurrenctyList = async (start = 1) => {
+  const fetchCryptoCurrenctyList = async (start = 1) => {
     try {
       const response = await fetch(
         `${CRIPTO_CURRENCIES_ENDPOINT}?limit=${DEFAULT_LIMIT}&start=${start}`,
@@ -60,18 +60,18 @@ const Home = () => {
       );
 
       const dataToJson: Response = await response.json();
-      const data: CriptoCurrencyInfoType[] = dataToJson.data.map(
-        (criptoCurrency: CriptoCurrencyResponse) => {
+      const data: CryptoCurrencyInfoType[] = dataToJson.data.map(
+        (cryptoCurrency: CryptoCurrencyResponse) => {
           return {
-            id: criptoCurrency?.id,
-            name: criptoCurrency?.name,
-            symbol: criptoCurrency?.symbol,
-            price: criptoCurrency?.quote?.USD.price,
-            percentChange24hs: criptoCurrency?.quote?.USD.percent_change_24h,
+            id: cryptoCurrency?.id,
+            name: cryptoCurrency?.name,
+            symbol: cryptoCurrency?.symbol,
+            price: cryptoCurrency?.quote?.USD.price,
+            percentChange24hs: cryptoCurrency?.quote?.USD.percent_change_24h,
           };
         },
       );
-      setCriptoCurrencies(start === 1 ? data : [...criptoCurrencies, ...data]);
+      setCryptoCurrencies(start === 1 ? data : [...cryptoCurrencies, ...data]);
     } catch (error) {
       console.log(error);
     }
@@ -81,18 +81,18 @@ const Home = () => {
 
   const onRefresh = () => {
     setRefreshing(true);
-    fetchCriptoCurrenctyList();
+    fetchCryptoCurrenctyList();
   };
 
   const handleItemPressed = (
-    criptoCurrencySelected: CriptoCurrencyInfoType,
+    cryptoCurrencySelected: CryptoCurrencyInfoType,
   ) => {
-    setCriptoCurrencyInfo(criptoCurrencySelected);
-    navigation.navigate('CriptoCurrency');
+    setCryptoCurrencyInfo(cryptoCurrencySelected);
+    navigation.navigate('CryptoCurrency');
   };
 
-  const renderItem = ({ item }: { item: CriptoCurrencyInfoType }) => {
-    const criptoCurrencyInfo = {
+  const renderItem = ({ item }: { item: CryptoCurrencyInfoType }) => {
+    const cryptoCurrencyInfo = {
       id: item?.id,
       name: item?.name,
       symbol: item?.symbol,
@@ -101,19 +101,19 @@ const Home = () => {
     };
     return (
       <Item
-        info={criptoCurrencyInfo}
+        info={cryptoCurrencyInfo}
         onPress={() => {
-          handleItemPressed(criptoCurrencyInfo);
+          handleItemPressed(cryptoCurrencyInfo);
         }}
       />
     );
   };
 
   useEffect(() => {
-    if (!criptoCurrencies.length) {
+    if (!cryptoCurrencies.length) {
       setLoading(true);
     }
-    fetchCriptoCurrenctyList(start);
+    fetchCryptoCurrenctyList(start);
   }, [start]);
 
   return (
@@ -133,7 +133,7 @@ const Home = () => {
         <FlatList
           onRefresh={onRefresh}
            refreshing={refreshing}
-          data={criptoCurrencies}
+          data={cryptoCurrencies}
           renderItem={renderItem}
           ItemSeparatorComponent={() => (
             <View style={{ height: 10, width: '100%' }} />

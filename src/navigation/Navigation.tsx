@@ -6,10 +6,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Screens
-import { CriptoCurrency, Home, LogIn as LogInScreen } from '../screens';
+import { CryptoCurrency, Home, LogIn as LogInScreen } from '../screens';
 
 // Components
-import { CriptoCurrencyHeader } from '../screens/CriptoCurrency/components';
+import { CryptoCurrencyHeader } from '../screens/CryptoCurrency/components';
 import { HomeHeader } from '../screens/Home/components';
 
 // Context
@@ -40,10 +40,10 @@ const Navigation = () => {
               })}
             />
             <Screen
-              name="CriptoCurrency"
-              component={CriptoCurrency}
+              name="CryptoCurrency"
+              component={CryptoCurrency}
               options={() => ({
-                header: () => <CriptoCurrencyHeader />,
+                header: () => <CryptoCurrencyHeader />,
               })}
             />
           </>
