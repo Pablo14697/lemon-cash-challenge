@@ -1,4 +1,4 @@
-package com.lemonchallenge
+package com.lemonchallengepablom
 
 import android.app.Application
 import com.facebook.react.PackageList

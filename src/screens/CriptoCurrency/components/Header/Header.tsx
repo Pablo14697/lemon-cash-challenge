@@ -62,8 +62,10 @@ const Header = () => {
           alignItems: 'center',
           justifyContent: 'space-between',
           width: '100%',
-          height: 70,
-          paddingHorizontal: 10,
+          height: 60,
+          paddingLeft: 10,
+          paddingRight: 20,
+          borderBottomWidth: 0.2,
         }}>
         <Pressable
           onPress={() => navigation.goBack()}

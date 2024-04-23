@@ -10,18 +10,6 @@ type CriptoCurrencyContext = {
   resetCriptoCurrencyInfo: () => void;
 };
 
-export const CriptoCurrencyContext = createContext<CriptoCurrencyContext>({
-  criptoCurrencyInfo: {
-    id: '',
-    name: '',
-    symbol: '',
-    price: 0,
-    percentChange24hs: 0,
-  },
-  setCriptoCurrencyInfo: () => {},
-  resetCriptoCurrencyInfo: () => {},
-});
-
 const DEFAULT_CRIPTO_CURRENCY_INFO = {
   id: '',
   name: '',
@@ -29,6 +17,12 @@ const DEFAULT_CRIPTO_CURRENCY_INFO = {
   price: 0,
   percentChange24hs: 0,
 };
+
+export const CriptoCurrencyContext = createContext<CriptoCurrencyContext>({
+  criptoCurrencyInfo: DEFAULT_CRIPTO_CURRENCY_INFO,
+  setCriptoCurrencyInfo: () => {},
+  resetCriptoCurrencyInfo: () => {},
+});
 
 const CriptoCurrencyProvider = ({
   children,

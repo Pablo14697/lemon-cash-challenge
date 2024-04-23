@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "381104300688",
+    "project_id": "lemon-8a263",
+    "storage_bucket": "lemon-8a263.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381104300688:android:c9ff7120b938241a44ee15",
+        "android_client_info": {
+          "package_name": "com.lemonchallengepablom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381104300688-l6au9ir3f6eu23f00hqfqpkhs753hmkq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lemonchallengepablom",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "381104300688-4s72o70i8t1e87cb2ve2omnt60d01a4k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP8iycgb1lTotoZM-YR3K2ATAhY7T57lk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381104300688-4s72o70i8t1e87cb2ve2omnt60d01a4k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "381104300688-3qqfpupd2cja2kd475h4njok76l51qeg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.LemonChallenge"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

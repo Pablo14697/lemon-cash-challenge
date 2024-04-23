@@ -1,4 +1,4 @@
-package com.lemonchallenge
+package com.lemonchallengepablom
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

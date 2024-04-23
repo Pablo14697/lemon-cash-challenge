@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from 'react';
 
 // React Native
-import { FlatList, SafeAreaView, View } from 'react-native';
+import { ActivityIndicator, FlatList, SafeAreaView, View } from 'react-native';
 
 // Components
 import { Item } from './components';
@@ -40,13 +40,15 @@ const Home = () => {
   const [criptoCurrencies, setCriptoCurrencies] = useState<
     CriptoCurrencyInfoType[]
   >([]);
+  const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [start, setStart] = useState(1);
+
   const { setCriptoCurrencyInfo } = useContext(CriptoCurrencyContext);
+
   const navigation = useNavigation();
 
   const fetchCriptoCurrenctyList = async (start = 1) => {
-    setLoading(true);
     try {
       const response = await fetch(
         `${CRIPTO_CURRENCIES_ENDPOINT}?limit=${DEFAULT_LIMIT}&start=${start}`,
@@ -74,9 +76,11 @@ const Home = () => {
       console.log(error);
     }
     setLoading(false);
+    setRefreshing(false);
   };
 
   const onRefresh = () => {
+    setRefreshing(true);
     fetchCriptoCurrenctyList();
   };
 
@@ -106,25 +110,41 @@ const Home = () => {
   };
 
   useEffect(() => {
+    if (!criptoCurrencies.length) {
+      setLoading(true);
+    }
     fetchCriptoCurrenctyList(start);
   }, [start]);
 
   return (
-    <SafeAreaView style={{ backgroundColor: '#fafafa' }}>
-      <FlatList
-        onRefresh={onRefresh}
-        refreshing={loading}
-        data={criptoCurrencies}
-        renderItem={renderItem}
-        ItemSeparatorComponent={() => (
-          <View style={{ height: 10, width: '100%' }} />
-        )}
-        contentContainerStyle={{ paddingHorizontal: 20 }}
-        onEndReached={() => {
-          setStart(DEFAULT_LIMIT + start);
-        }}
-        keyExtractor={item => item.id}
-      />
+    <SafeAreaView style={{ backgroundColor: '#fafafa' ,       
+  }}>
+      {loading ? (
+        <View
+          style={{
+            width: '100%',
+            height: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <ActivityIndicator size="small" color="#121212" />
+        </View>
+      ) : (
+        <FlatList
+          onRefresh={onRefresh}
+           refreshing={refreshing}
+          data={criptoCurrencies}
+          renderItem={renderItem}
+          ItemSeparatorComponent={() => (
+            <View style={{ height: 10, width: '100%' }} />
+          )}
+          contentContainerStyle={{ paddingHorizontal: 20, marginTop: 10  }}
+          onEndReached={() => {
+            setStart(DEFAULT_LIMIT + start);
+          }}
+          keyExtractor={item => item.id}
+        />
+      )}
     </SafeAreaView>
   );
 };
