@@ -13,6 +13,9 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
+// Styles
+import styles from './styles';
+
 // Utils
 import {
   API_KEY,
@@ -22,6 +25,12 @@ import {
 
 // Context
 import { CryptoCurrencyContext } from '../../providers/CryptoCurrencyProvider/CryptoCurrencyProvider';
+
+const Loading = () => (
+  <View style={styles.loadingContainer}>
+    <ActivityIndicator size="small" color="#121212" />
+  </View>
+);
 
 const CryptoCurrency = () => {
   const [loading, setLoading] = useState(false);
@@ -78,120 +87,55 @@ const CryptoCurrency = () => {
   return (
     <SafeAreaView>
       {loading ? (
-        <View
-          style={{
-            width: '100%',
-            height: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <ActivityIndicator size="small" color="#121212" />
-        </View>
+        <Loading />
       ) : (
         <ScrollView
-          style={{
-            width: '100%',
-            height: '100%',
-            paddingHorizontal: 20,
-            paddingTop: 10,
-            backgroundColor: '#fafafa',
-          }}
-          contentContainerStyle={{
-            width: '100%',
-            height: '100%',
-            backgroundColor: '#fafafa',
-          }}
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollViewContentContainerStyle}
           refreshControl={
             <RefreshControl
               refreshing={loading}
               onRefresh={fetchCryptoCurrency}
             />
           }>
-          <View
-            style={{
-              height: '100%',
-              width: '100%',
-              alignItems: 'center',
-            }}>
-            <View style={{ flexDirection: 'row', gap: 10 }}>
+          <View style={styles.cryptoInfoContainer}>
+            <View style={styles.firstRowContainer}>
               <Image
                 source={{
                   uri: `${CRIPTO_CURRENCY_LOGO_ENDPOINT}/${cryptoCurrencyInfo?.id}.png`,
                 }}
-                style={{
-                  height: 35,
-                  width: 35,
-                  objectFit: 'contain',
-                }}
+                style={styles.cryptoLogo}
               />
-              <View
-                style={{ flexDirection: 'row', gap: 10, alignItems: 'center' }}>
+              <View style={styles.cryptoPriceContainer}>
                 <>
-                  <Text
-                    style={{ fontSize: 24, fontFamily: 'NeueMontreal-Bold' }}>
+                  <Text style={styles.cryptoPriceText}>
                     {quote?.price?.toFixed(2)}
                   </Text>
-                  <Text
-                    style={{
-                      fontSize: 16,
-                      color: '#888888',
-                      fontFamily: 'NeueMontreal-Medium',
-                    }}>
-                    USD
-                  </Text>
+                  <Text style={styles.cryptoCurrencyText}>USD</Text>
                 </>
               </View>
             </View>
-            <View
-              style={{
-                height: '70%',
-                width: '100%',
-                backgroundColor: '#e6e6e6',
-                marginTop: 20,
-                borderRadius: 10,
-                alignItems: 'center',
-                justifyContent: 'flex-end',
-                padding: 20,
-              }}>
-              <Text style={{ fontFamily: 'NeueMontreal-Bold', fontSize: 36 }}>
+            <View style={styles.graphContainer}>
+              <Text style={styles.percentText}>
                 {PERCENTS_CHANGE[indexPercentSelected]?.value?.toFixed(2)}%
               </Text>
-              <View
-                style={{
-                  height: 40,
-                  width: '100%',
-                  backgroundColor: '#fafafa',
-                  borderRadius: 10,
-                  marginTop: '50%',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                }}>
+              <View style={styles.switchContainer}>
                 {PERCENTS_CHANGE.map((percent, index) => (
                   <Pressable
                     onPress={() => setIndexPercentSelected(index)}
-                    style={{
-                      width: '25%',
-                      borderRadius: 10,
-                      padding: 4,
-                    }}
+                    style={styles.containerButton}
                     key={percent.title}>
                     <View
                       style={{
-                        height: '100%',
-                        width: '100%',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        borderRadius: 10,
+                        ...styles.backgroundButton,
                         backgroundColor:
                           indexPercentSelected === index
                             ? '#ffffff'
                             : 'transparent',
-                        zIndex: -1,
                       }}>
                       <Text
                         style={{
-                          fontFamily: 'NeueMontreal-Medium',
-                          fontSize: 14,
+                          ...styles.textButton,
                           color:
                             indexPercentSelected === index
                               ? '#454545'

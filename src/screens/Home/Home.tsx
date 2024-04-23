@@ -4,6 +4,9 @@ import { useContext, useEffect, useState } from 'react';
 // React Native
 import { ActivityIndicator, FlatList, SafeAreaView, View } from 'react-native';
 
+// Styles
+import styles from './styles';
+
 // Components
 import { Item } from './components';
 
@@ -35,6 +38,12 @@ type CryptoCurrencyResponse = {
 type Response = {
   data: CryptoCurrencyResponse[];
 };
+
+const Loading = () => (
+  <View style={styles.loadingContainer}>
+    <ActivityIndicator size="small" color="#121212" />
+  </View>
+);
 
 const Home = () => {
   const [cryptoCurrencies, setCryptoCurrencies] = useState<
@@ -117,28 +126,17 @@ const Home = () => {
   }, [start]);
 
   return (
-    <SafeAreaView style={{ backgroundColor: '#fafafa' ,       
-  }}>
+    <SafeAreaView style={styles.safeAreaViewContainer}>
       {loading ? (
-        <View
-          style={{
-            width: '100%',
-            height: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <ActivityIndicator size="small" color="#121212" />
-        </View>
+        <Loading />
       ) : (
         <FlatList
           onRefresh={onRefresh}
-           refreshing={refreshing}
+          refreshing={refreshing}
           data={cryptoCurrencies}
           renderItem={renderItem}
-          ItemSeparatorComponent={() => (
-            <View style={{ height: 10, width: '100%' }} />
-          )}
-          contentContainerStyle={{ paddingHorizontal: 20, marginTop: 10  }}
+          ItemSeparatorComponent={() => <View style={styles.separatorItem} />}
+          contentContainerStyle={styles.flatListContentContainerStyle}
           onEndReached={() => {
             setStart(DEFAULT_LIMIT + start);
           }}

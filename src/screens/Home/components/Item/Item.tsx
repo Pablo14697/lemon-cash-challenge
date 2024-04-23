@@ -1,6 +1,9 @@
 // React Native
 import { Image, Pressable, Text, View } from 'react-native';
 
+// Styles
+import styles from './styles';
+
 // Utils
 import { CRIPTO_CURRENCY_LOGO_ENDPOINT } from '../../../../../hardcoded';
 
@@ -19,46 +22,17 @@ const Item = ({ info, onPress }: Props) => {
 
   return (
     <Pressable onPress={onPress}>
-      <View
-        style={{
-          flexDirection: 'row',
-          width: '100%',
-          backgroundColor: '#ffffff',
-          height: 80,
-          borderRadius: 10,
-          padding: 15,
-        }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            width: '20%',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-          }}>
-          <Image source={{ uri }} style={{ width: 35, height: 35 }} />
+      <View style={styles.container}>
+        <View style={styles.cryptoCurrencyLogoContainer}>
+          <Image source={{ uri }} style={styles.cryptoCurrencyLogo} />
         </View>
-        <View
-          style={{
-            flexDirection: 'column',
-            width: '40%',
-            justifyContent: 'space-around',
-          }}>
-          <Text style={{ fontFamily: 'NeueMontreal-Medium', fontSize: 16 }}>
-            {symbol}
-          </Text>
+        <View style={styles.informationContainer}>
+          <Text style={styles.symbolText}>{symbol}</Text>
 
-          <Text style={{ color: '#888888', fontSize: 14 }}>{name}</Text>
+          <Text style={styles.nameText}>{name}</Text>
         </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            width: '40%',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
-          }}>
-          <Text style={{ fontFamily: 'NeueMontreal-Medium', fontSize: 16 }}>
-            {currentPrice} USD
-          </Text>
+        <View style={styles.priceContainer}>
+          <Text style={styles.priceText}>{currentPrice} USD</Text>
         </View>
       </View>
     </Pressable>

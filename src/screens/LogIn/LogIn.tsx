@@ -5,6 +5,9 @@ import { useTranslation } from 'react-i18next';
 // React Native
 import { Text, Image, View, Pressable, ActivityIndicator } from 'react-native';
 
+// Styles
+import styles from './styles';
+
 // Context
 import { AuthContext } from '../../providers/AuthProvider/AuthProvider';
 
@@ -25,6 +28,12 @@ interface Props {
   loading: boolean;
 }
 
+const Loading = () => (
+  <View style={styles.loadingContainer}>
+    <ActivityIndicator size="small" color="#121212" />
+  </View>
+);
+
 const LogIn = ({ loading = false }: Props) => {
   const [error, setError] = useState(false);
   const { t } = useTranslation();
@@ -42,66 +51,17 @@ const LogIn = ({ loading = false }: Props) => {
   };
 
   return (
-    <View
-      style={{
-        height: '100%',
-        width: '100%',
-        paddingHorizontal: 20,
-        paddingTop: '50%',
-        paddingBottom: '20%',
-        alignItems: 'center',
-        backgroundColor: '#fafafa',
-        justifyContent: 'space-between',
-      }}>
-      <Image
-        source={Logo}
-        style={{
-          height: '40%',
-          width: '40%',
-          objectFit: 'contain',
-        }}
-      />
+    <View style={styles.container}>
+      <Image source={Logo} style={styles.logo} />
       {loading ? (
-        <View
-          style={{
-            width: '100%',
-            height: 60,
-            borderRadius: 10,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <ActivityIndicator size="small" color="#121212" />
-        </View>
+        <Loading />
       ) : (
-        <View style={{ width: '100%', alignItems: 'center', gap: 10 }}>
-          <Pressable
-            onPress={() => signIn()}
-            style={{
-              backgroundColor: '#121212',
-              width: '100%',
-              height: 60,
-              borderRadius: 10,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Text
-              style={{
-                fontSize: 16,
-                color: '#ffffff',
-                fontFamily: 'NeueMontreal-Medium',
-              }}>
-              {t('LOG_IN')}
-            </Text>
+        <View style={styles.loginButtonContainer}>
+          <Pressable onPress={() => signIn()} style={styles.loginButton}>
+            <Text style={styles.textButton}>{t('LOG_IN')}</Text>
           </Pressable>
           {error && (
-            <Text
-              style={{
-                fontSize: 16,
-                color: 'red',
-                fontFamily: 'NeueMontreal-Medium',
-              }}>
-              Something wrong happened!
-            </Text>
+            <Text style={styles.errorText}>Something wrong happened!</Text>
           )}
         </View>
       )}
