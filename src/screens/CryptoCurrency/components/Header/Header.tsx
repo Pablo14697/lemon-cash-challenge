@@ -34,7 +34,8 @@ const Header = () => {
   const handleIsPreferred = async () => {
     setIsPreferred(!isPreferred);
     if (!isPreferred) {
-      await setPreferredCryptoCurrencies(cryptoCurrencyInfo);
+      const { ...rest } = cryptoCurrencyInfo;
+      await setPreferredCryptoCurrencies(rest);
     } else {
       return await removePreferredCryptoCurrencies(cryptoCurrencyInfo);
     }

@@ -3,5 +3,4 @@ export type CryptoCurrencyInfoType = {
   name: string;
   symbol: string;
   price: number;
-  percentChange24hs: number;
 };

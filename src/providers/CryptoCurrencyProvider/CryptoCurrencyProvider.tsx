@@ -15,7 +15,6 @@ const DEFAULT_CRIPTO_CURRENCY_INFO = {
   name: '',
   symbol: '',
   price: 0,
-  percentChange24hs: 0,
 };
 
 export const CryptoCurrencyContext = createContext<CryptoCurrencyContext>({

@@ -76,7 +76,6 @@ const Home = () => {
             name: cryptoCurrency?.name,
             symbol: cryptoCurrency?.symbol,
             price: cryptoCurrency?.quote?.USD.price,
-            percentChange24hs: cryptoCurrency?.quote?.USD.percent_change_24h,
           };
         },
       );
@@ -106,7 +105,6 @@ const Home = () => {
       name: item?.name,
       symbol: item?.symbol,
       price: item?.price,
-      percentChange24hs: item?.percentChange24hs,
     };
     return (
       <Item

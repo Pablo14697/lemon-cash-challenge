@@ -25,6 +25,10 @@ import {
 
 // Context
 import { CryptoCurrencyContext } from '../../providers/CryptoCurrencyProvider/CryptoCurrencyProvider';
+import {
+  getPreferredCryptoCurrencies,
+  updatePreferredCryptoCurrencies,
+} from './components/Header/utils/preferredCurrencyStorage';
 
 const Loading = () => (
   <View style={styles.loadingContainer}>
@@ -34,9 +38,12 @@ const Loading = () => (
 
 const CryptoCurrency = () => {
   const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
   const [indexPercentSelected, setIndexPercentSelected] = useState(0);
   const [info, setInfo] = useState({
     id: null,
+    name: '',
+    symbol: '',
     quote: {
       USD: {
         percent_change_24h: 0,
@@ -48,6 +55,33 @@ const CryptoCurrency = () => {
     },
   });
   const { cryptoCurrencyInfo } = useContext(CryptoCurrencyContext);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    fetchCryptoCurrency();
+  };
+
+  const updatePreferredInfo = async cryptoInfo => {
+    const preferredCryptoCurrencies =
+      (await getPreferredCryptoCurrencies()) || [];
+    const cryptoCurrencyIndex = preferredCryptoCurrencies.findIndex(
+      preferredCryptoCurrency => {
+        return preferredCryptoCurrency.symbol === cryptoInfo.symbol;
+      },
+    );
+
+    if (cryptoCurrencyIndex !== -1) {
+      preferredCryptoCurrencies[cryptoCurrencyIndex] = {
+        id: cryptoInfo.id,
+        name: cryptoInfo.name,
+        symbol: cryptoInfo.symbol,
+        price: cryptoInfo.quote?.USD?.price,
+      };
+    }
+    await updatePreferredCryptoCurrencies(
+      JSON.stringify(preferredCryptoCurrencies),
+    );
+  };
 
   const fetchCryptoCurrency = async () => {
     try {
@@ -61,11 +95,17 @@ const CryptoCurrency = () => {
       );
 
       const data = await response.json();
-      setInfo(data?.data?.[cryptoCurrencyInfo?.symbol]);
+
+      if (data?.data) {
+        const cryptoInfo = data.data?.[cryptoCurrencyInfo?.symbol];
+        setInfo(cryptoInfo);
+        await updatePreferredInfo(cryptoInfo);
+      }
     } catch (error) {
       console.log(error);
     }
     setLoading(false);
+    setRefreshing(false);
   };
 
   useEffect(() => {
@@ -74,6 +114,13 @@ const CryptoCurrency = () => {
     }
 
     fetchCryptoCurrency();
+
+    const interval = setInterval(() => {
+      setRefreshing(true);
+      fetchCryptoCurrency();
+    }, 30000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const quote = info?.quote?.USD;
@@ -93,10 +140,7 @@ const CryptoCurrency = () => {
           style={styles.scrollView}
           contentContainerStyle={styles.scrollViewContentContainerStyle}
           refreshControl={
-            <RefreshControl
-              refreshing={loading}
-              onRefresh={fetchCryptoCurrency}
-            />
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>
           <View style={styles.cryptoInfoContainer}>
             <View style={styles.firstRowContainer}>

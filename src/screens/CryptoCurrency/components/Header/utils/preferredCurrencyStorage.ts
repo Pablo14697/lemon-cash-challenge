@@ -48,3 +48,7 @@ export const removePreferredCryptoCurrencies = async (
     preferredCryptoCurrenciesToString,
   );
 };
+
+export const updatePreferredCryptoCurrencies = async ARRAY => {
+  await AsyncStorage.setItem(PREFERRED_CRIPTO_CURRENCIES_KEY, ARRAY);
+};
