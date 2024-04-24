@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
   },
   separatorItem: { height: 10, width: '100%' },
   flatListContentContainerStyle: {
-    height: '100%',
     paddingHorizontal: 20,
     marginTop: 10,
   },

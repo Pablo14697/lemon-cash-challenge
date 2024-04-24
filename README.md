@@ -5,6 +5,7 @@ This is a challenge for Lemon Cash
 > **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
 ## Step 0: Install dependencies
+
 ```bash
 # using npm
 npm install && cd ios && pod install
