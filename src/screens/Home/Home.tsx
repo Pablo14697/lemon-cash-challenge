@@ -1,5 +1,11 @@
 // React Native
-import { FlatList, SafeAreaView, View } from 'react-native';
+import {
+  FlatList,
+  RefreshControl,
+  SafeAreaView,
+  ScrollView,
+  View,
+} from 'react-native';
 
 // Styles
 import styles from './styles';
@@ -63,7 +69,13 @@ const Home = () => {
         {loading ? (
           <Loading />
         ) : error || cryptoCurrencies.length === 0 ? (
-          <GenericIssue error={error} />
+          <ScrollView
+            style={styles.genericIssueContainer}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }>
+            <GenericIssue error={error} />
+          </ScrollView>
         ) : (
           <FlatList
             onRefresh={onRefresh}

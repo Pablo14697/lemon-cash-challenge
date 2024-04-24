@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     backgroundColor: '#fafafa',
   },
+  genericIssueContainer: { height: '100%' },
 });
 
 export default styles;
