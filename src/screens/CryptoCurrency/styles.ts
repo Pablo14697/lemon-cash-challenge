@@ -25,12 +25,7 @@ const styles = StyleSheet.create({
     objectFit: 'contain',
   },
   cryptoPriceContainer: { flexDirection: 'row', gap: 10, alignItems: 'center' },
-  cryptoPriceText: { fontSize: 24, fontFamily: 'NeueMontreal-Bold' },
-  cryptoCurrencyText: {
-    fontSize: 16,
-    color: '#888888',
-    fontFamily: 'NeueMontreal-Medium',
-  },
+
   graphContainer: {
     height: '70%',
     width: '100%',
@@ -41,7 +36,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     padding: 20,
   },
-  percentText: { fontFamily: 'NeueMontreal-Bold', fontSize: 36 },
   switchContainer: {
     height: 40,
     width: '100%',
@@ -64,7 +58,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     zIndex: -1,
   },
-  textButton: { fontFamily: 'NeueMontreal-Medium', fontSize: 14 },
 });
 
 export default styles;

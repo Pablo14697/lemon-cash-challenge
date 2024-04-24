@@ -32,16 +32,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  textButton: {
-    fontSize: 16,
-    color: '#ffffff',
-    fontFamily: 'NeueMontreal-Medium',
-  },
-  errorText: {
-    fontSize: 16,
-    color: 'red',
-    fontFamily: 'NeueMontreal-Medium',
-  },
 });
 
 export default styles;

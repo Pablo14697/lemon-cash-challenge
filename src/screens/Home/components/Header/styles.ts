@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
-  titleText: { fontFamily: 'NeueMontreal-Medium', fontSize: 22 },
   logoutButton: {
     flexDirection: 'row',
     gap: 10,

@@ -21,12 +21,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  titleCenter: { fontFamily: 'NeueMontreal-Medium', fontSize: 16 },
-  subtitleCenter: {
-    fontFamily: 'NeueMontreal-Medium',
-    color: '#888888',
-    fontSize: 14,
-  },
   preferredButton: {
     width: '20%',
     alignItems: 'flex-end',

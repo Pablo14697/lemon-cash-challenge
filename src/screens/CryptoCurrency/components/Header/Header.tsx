@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from 'react';
 
 // React Native
-import { Image, Pressable, SafeAreaView, Text, View } from 'react-native';
+import { Image, Pressable, SafeAreaView, View } from 'react-native';
 
 // Styles
 import styles from './styles';
@@ -25,6 +25,7 @@ import {
 
 // Types
 import { CryptoCurrencyInfoType } from '../../../../types/CryptoCurrency';
+import { Typography } from '../../../../components';
 
 const Header = () => {
   const navigation = useNavigation();
@@ -64,8 +65,12 @@ const Header = () => {
           <Image source={BackArrow} style={styles.backIcon} />
         </Pressable>
         <View style={styles.centerContainer}>
-          <Text style={styles.titleCenter}>{cryptoCurrencyInfo.symbol}</Text>
-          <Text style={styles.subtitleCenter}>{cryptoCurrencyInfo.name}</Text>
+          <Typography fontSize={16} fontWeight="medium">
+            {cryptoCurrencyInfo.symbol}
+          </Typography>
+          <Typography fontSize={14} fontWeight="medium" color="mediumGray">
+            {cryptoCurrencyInfo.name}
+          </Typography>
         </View>
         <Pressable onPress={handleIsPreferred} style={styles.preferredButton}>
           <View style={styles.preferredBackgroundButton}>

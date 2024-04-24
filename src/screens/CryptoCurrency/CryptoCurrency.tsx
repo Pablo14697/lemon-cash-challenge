@@ -3,7 +3,6 @@ import { useState, useEffect, useContext } from 'react';
 
 // React Native
 import {
-  Text,
   Image,
   View,
   ScrollView,
@@ -13,7 +12,7 @@ import {
 } from 'react-native';
 
 // Components
-import { Loading } from '../../components';
+import { Loading, Typography } from '../../components';
 
 // Styles
 import styles from './styles';
@@ -148,17 +147,23 @@ const CryptoCurrency = () => {
               />
               <View style={styles.cryptoPriceContainer}>
                 <>
-                  <Text style={styles.cryptoPriceText}>
+                  <Typography fontSize={24} fontWeight="bold">
                     {quote?.price?.toFixed(2)}
-                  </Text>
-                  <Text style={styles.cryptoCurrencyText}>USD</Text>
+                  </Typography>
+
+                  <Typography
+                    fontSize={16}
+                    color="mediumGray"
+                    fontWeight="medium">
+                    USD
+                  </Typography>
                 </>
               </View>
             </View>
             <View style={styles.graphContainer}>
-              <Text style={styles.percentText}>
+              <Typography fontWeight="bold" fontSize={36}>
                 {PERCENTS_CHANGE[indexPercentSelected]?.value?.toFixed(2)}%
-              </Text>
+              </Typography>
               <View style={styles.switchContainer}>
                 {PERCENTS_CHANGE.map((percent, index) => (
                   <Pressable
@@ -173,16 +178,16 @@ const CryptoCurrency = () => {
                             ? '#ffffff'
                             : 'transparent',
                       }}>
-                      <Text
-                        style={{
-                          ...styles.textButton,
-                          color:
-                            indexPercentSelected === index
-                              ? '#454545'
-                              : '#888888',
-                        }}>
+                      <Typography
+                        fontWeight="medium"
+                        fontSize={14}
+                        color={
+                          indexPercentSelected === index
+                            ? 'darkGray'
+                            : 'mediumGray'
+                        }>
                         {percent.title}
-                      </Text>
+                      </Typography>
                     </View>
                   </Pressable>
                 ))}

@@ -2,7 +2,7 @@
 import { useContext } from 'react';
 
 // React Native
-import { Image, Pressable, SafeAreaView, Text, View } from 'react-native';
+import { Image, Pressable, SafeAreaView, View } from 'react-native';
 
 // Styles
 import styles from './styles';
@@ -12,6 +12,7 @@ import LogOut from './assets/logout.png';
 
 // Context
 import { AuthContext } from '../../../../providers/AuthProvider/AuthProvider';
+import { Typography } from '../../../../components';
 
 const Header = () => {
   const { logOut } = useContext(AuthContext);
@@ -19,7 +20,9 @@ const Header = () => {
     <SafeAreaView style={styles.safeAreaViewContainer}>
       <View style={styles.headerContainer}>
         <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>Crypto Market</Text>
+          <Typography fontSize={24} fontWeight="medium">
+            Crypto Market
+          </Typography>
         </View>
         <Pressable onPress={logOut} style={styles.logoutButton}>
           <Image source={LogOut} style={styles.logoutIcon} />

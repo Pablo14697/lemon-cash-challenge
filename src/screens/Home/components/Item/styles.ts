@@ -21,15 +21,12 @@ const styles = StyleSheet.create({
     width: '40%',
     justifyContent: 'space-around',
   },
-  symbolText: { fontFamily: 'NeueMontreal-Medium', fontSize: 16 },
-  nameText: { color: '#888888', fontSize: 14 },
   priceContainer: {
     flexDirection: 'row',
     width: '40%',
     alignItems: 'center',
     justifyContent: 'flex-end',
   },
-  priceText: { fontFamily: 'NeueMontreal-Medium', fontSize: 16 },
 });
 
 export default styles;

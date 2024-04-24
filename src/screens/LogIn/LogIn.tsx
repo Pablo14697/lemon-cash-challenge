@@ -2,7 +2,7 @@
 import { useContext, useState } from 'react';
 
 // React Native
-import { Text, Image, View, Pressable, ActivityIndicator } from 'react-native';
+import { Image, View, Pressable, ActivityIndicator } from 'react-native';
 
 // Styles
 import styles from './styles';
@@ -15,6 +15,7 @@ import { Logo } from '../../assets/branding';
 
 // Google Sign In
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { Typography } from '../../components';
 
 interface Props {
   loading: boolean;
@@ -49,10 +50,14 @@ const LogIn = ({ loading = false }: Props) => {
       ) : (
         <View style={styles.loginButtonContainer}>
           <Pressable onPress={() => signIn()} style={styles.loginButton}>
-            <Text style={styles.textButton}>Continue with Google</Text>
+            <Typography fontSize={16} color="white" fontWeight="medium">
+              Continue with Google
+            </Typography>
           </Pressable>
           {error && (
-            <Text style={styles.errorText}>Something wrong happened!</Text>
+            <Typography fontSize={16} color="red" fontWeight="medium">
+              Something wrong happened!
+            </Typography>
           )}
         </View>
       )}
