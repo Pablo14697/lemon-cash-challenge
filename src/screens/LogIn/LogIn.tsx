@@ -1,6 +1,5 @@
 // React
 import { useContext, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 // React Native
 import { Text, Image, View, Pressable, ActivityIndicator } from 'react-native';
@@ -20,7 +19,7 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 // Utils
 import { WEB_CLIENT_ID } from '../../../hardcoded';
 
-GoogleSignin.configure({
+GoogleSignin?.configure({
   webClientId: WEB_CLIENT_ID,
 });
 
@@ -36,7 +35,6 @@ const Loading = () => (
 
 const LogIn = ({ loading = false }: Props) => {
   const [error, setError] = useState(false);
-  const { t } = useTranslation();
   const { setNewToken } = useContext(AuthContext);
   const signIn = async () => {
     try {
@@ -58,7 +56,7 @@ const LogIn = ({ loading = false }: Props) => {
       ) : (
         <View style={styles.loginButtonContainer}>
           <Pressable onPress={() => signIn()} style={styles.loginButton}>
-            <Text style={styles.textButton}>{t('LOG_IN')}</Text>
+            <Text style={styles.textButton}>Continue with Google</Text>
           </Pressable>
           {error && (
             <Text style={styles.errorText}>Something wrong happened!</Text>
