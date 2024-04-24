@@ -10,8 +10,10 @@ import {
   SafeAreaView,
   RefreshControl,
   Pressable,
-  ActivityIndicator,
 } from 'react-native';
+
+// Components
+import { Loading } from '../../components';
 
 // Styles
 import styles from './styles';
@@ -29,12 +31,6 @@ import {
   getPreferredCryptoCurrencies,
   updatePreferredCryptoCurrencies,
 } from './components/Header/utils/preferredCurrencyStorage';
-
-const Loading = () => (
-  <View style={styles.loadingContainer}>
-    <ActivityIndicator size="small" color="#121212" />
-  </View>
-);
 
 const CryptoCurrency = () => {
   const [loading, setLoading] = useState(false);

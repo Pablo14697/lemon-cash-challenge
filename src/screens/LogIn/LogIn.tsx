@@ -16,13 +16,6 @@ import { Logo } from '../../assets/branding';
 // Google Sign In
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
-// Utils
-import { WEB_CLIENT_ID } from '../../../hardcoded';
-
-GoogleSignin?.configure({
-  webClientId: WEB_CLIENT_ID,
-});
-
 interface Props {
   loading: boolean;
 }

@@ -2,13 +2,14 @@
 import { useContext, useEffect, useState } from 'react';
 
 // React Native
-import { ActivityIndicator, FlatList, SafeAreaView, View } from 'react-native';
+import { FlatList, SafeAreaView, View } from 'react-native';
 
 // Styles
 import styles from './styles';
 
 // Components
 import { Item } from './components';
+import { Loading } from '../../components';
 
 // Hooks
 import { useNavigation } from '../../navigation/hooks';
@@ -38,12 +39,6 @@ type CryptoCurrencyResponse = {
 type Response = {
   data: CryptoCurrencyResponse[];
 };
-
-const Loading = () => (
-  <View style={styles.loadingContainer}>
-    <ActivityIndicator size="small" color="#121212" />
-  </View>
-);
 
 const Home = () => {
   const [cryptoCurrencies, setCryptoCurrencies] = useState<
