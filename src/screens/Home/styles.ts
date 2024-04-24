@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   contentContainer: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fafafa',
   },
 });
 

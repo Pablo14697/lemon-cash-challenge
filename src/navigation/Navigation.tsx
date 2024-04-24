@@ -8,9 +8,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // Screens
 import { CryptoCurrency, Home, LogIn as LogInScreen } from '../screens';
 
-// Components
-import { CryptoCurrencyHeader } from '../screens/CryptoCurrency/components';
-
 // Context
 import { AuthContext } from '../providers/AuthProvider/AuthProvider';
 
@@ -39,9 +36,7 @@ const Navigation = () => {
             <Screen
               name="CryptoCurrency"
               component={CryptoCurrency}
-              options={() => ({
-                header: () => <CryptoCurrencyHeader />,
-              })}
+              options={{ headerShown: false }}
             />
           </>
         )}

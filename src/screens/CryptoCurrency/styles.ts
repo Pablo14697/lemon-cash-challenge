@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  safeAreaViewContainer: {
+    backgroundColor: '#ffffff',
+  },
   scrollView: {
     width: '100%',
     height: '100%',

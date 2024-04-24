@@ -2,7 +2,7 @@
 import { View, ScrollView, SafeAreaView, RefreshControl } from 'react-native';
 
 // Components
-import { Graph, Price } from './components';
+import { CryptoCurrencyHeader, Graph, Price } from './components';
 import { GenericIssue, Loading } from '../../components';
 
 // Styles
@@ -18,11 +18,10 @@ const CryptoCurrency = () => {
   const quote = info?.quote?.USD;
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.safeAreaViewContainer}>
+      <CryptoCurrencyHeader error={error} />
       {loading ? (
         <Loading />
-      ) : error || !info.id ? (
-        <GenericIssue error={error} />
       ) : (
         <ScrollView
           style={styles.scrollView}
@@ -30,10 +29,14 @@ const CryptoCurrency = () => {
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>
-          <View style={styles.cryptoInfoContainer}>
-            <Price value={quote?.price} id={cryptoCurrencyInfo?.id} />
-            <Graph id={info.id} quote={quote} />
-          </View>
+          {error || !info.id ? (
+            <GenericIssue error={error} />
+          ) : (
+            <View style={styles.cryptoInfoContainer}>
+              <Price value={quote?.price} id={cryptoCurrencyInfo?.id} />
+              <Graph id={info.id} quote={quote} />
+            </View>
+          )}
         </ScrollView>
       )}
     </SafeAreaView>

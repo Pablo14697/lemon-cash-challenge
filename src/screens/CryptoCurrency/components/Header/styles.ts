@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   safeAreaViewContainer: {
-    backgroundColor: '#fafafa',
+    backgroundColor: '#ffffff',
   },
   headerContainer: {
     flexDirection: 'row',

@@ -73,7 +73,7 @@ const Home = () => {
             ItemSeparatorComponent={() => <View style={styles.separatorItem} />}
             contentContainerStyle={styles.flatListContentContainerStyle}
             onEndReached={onEndReached}
-            keyExtractor={item => item.id}
+            keyExtractor={item => `${item.id}-${toggleSelected}`}
           />
         )}
       </View>

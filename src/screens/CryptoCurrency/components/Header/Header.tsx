@@ -27,7 +27,7 @@ import {
 import { CryptoCurrencyInfoType } from '../../../../types/CryptoCurrency';
 import { Typography } from '../../../../components';
 
-const Header = () => {
+const Header = ({ error }: { error: boolean }) => {
   const navigation = useNavigation();
   const { cryptoCurrencyInfo } = useContext(CryptoCurrencyContext);
   const [isPreferred, setIsPreferred] = useState(false);
@@ -72,7 +72,10 @@ const Header = () => {
             {cryptoCurrencyInfo.name}
           </Typography>
         </View>
-        <Pressable onPress={handleIsPreferred} style={styles.preferredButton}>
+        <Pressable
+          disabled={error}
+          onPress={handleIsPreferred}
+          style={styles.preferredButton}>
           <View style={styles.preferredBackgroundButton}>
             <Image
               source={isPreferred ? HearthPressed : Hearth}
