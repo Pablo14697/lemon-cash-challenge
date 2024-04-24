@@ -21,7 +21,7 @@ import {
   setPreferredCryptoCurrencies,
   removePreferredCryptoCurrencies,
   getPreferredCryptoCurrencies,
-} from './utils/preferredCurrencyStorage';
+} from '../../../../utils/preferredCurrencyStorage';
 
 // Types
 import { CryptoCurrencyInfoType } from '../../../../types/CryptoCurrency';

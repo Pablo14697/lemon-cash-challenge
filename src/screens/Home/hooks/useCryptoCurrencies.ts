@@ -7,6 +7,7 @@ import { CryptoCurrencyContext } from '../../../providers/CryptoCurrencyProvider
 // Utils
 import API from '../../../api';
 import { CRIPTO_CURRENCIES_ENDPOINT } from '../../../../hardcoded';
+import { getPreferredCryptoCurrencies } from '../../../utils/preferredCurrencyStorage';
 
 // Types
 import { CryptoCurrencyInfoType } from '../../../types/CryptoCurrency';
@@ -15,6 +16,7 @@ type CryptoCurrencyResponse = {
   id: string;
   name: string;
   symbol: string;
+  price: number;
   quote: {
     USD: {
       price: number;
@@ -30,6 +32,9 @@ type ResponseAPI = {
 const DEFAULT_LIMIT = 10;
 
 const useCryptoCurrencies = () => {
+  const [toggleSelected, setToggleSelected] = useState<'ALL' | 'STARRED'>(
+    'ALL',
+  );
   const [cryptoCurrencies, setCryptoCurrencies] = useState<
     CryptoCurrencyInfoType[]
   >([]);
@@ -39,23 +44,40 @@ const useCryptoCurrencies = () => {
 
   const { setCryptoCurrencyInfo } = useContext(CryptoCurrencyContext);
 
-  const fetchCryptoCurrenctyList = async (start = 1) => {
+  const fetchCryptoCurrenctyList = async (
+    start = 1,
+    toggleSelected = 'ALL',
+  ) => {
     try {
-      const response = await API.get(
-        `${CRIPTO_CURRENCIES_ENDPOINT}?limit=${DEFAULT_LIMIT}&start=${start}`,
-      );
-
-      const data: CryptoCurrencyInfoType[] = (response as ResponseAPI).data.map(
-        (cryptoCurrency: CryptoCurrencyResponse) => {
+      if (toggleSelected === 'ALL') {
+        const response = await API.get(
+          `${CRIPTO_CURRENCIES_ENDPOINT}?limit=${DEFAULT_LIMIT}&start=${start}`,
+        );
+        const data = (response as ResponseAPI).data.map(
+          (cryptoCurrency: CryptoCurrencyResponse) => {
+            return {
+              id: cryptoCurrency?.id,
+              name: cryptoCurrency?.name,
+              symbol: cryptoCurrency?.symbol,
+              price: cryptoCurrency?.quote?.USD.price,
+            };
+          },
+        );
+        setCryptoCurrencies(
+          start === 1 ? data : [...cryptoCurrencies, ...data],
+        );
+      } else {
+        const response = await getPreferredCryptoCurrencies();
+        const data = response.map((cryptoCurrency: CryptoCurrencyResponse) => {
           return {
             id: cryptoCurrency?.id,
             name: cryptoCurrency?.name,
             symbol: cryptoCurrency?.symbol,
-            price: cryptoCurrency?.quote?.USD.price,
+            price: cryptoCurrency?.price,
           };
-        },
-      );
-      setCryptoCurrencies(start === 1 ? data : [...cryptoCurrencies, ...data]);
+        });
+        setCryptoCurrencies(data);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -63,9 +85,15 @@ const useCryptoCurrencies = () => {
     setRefreshing(false);
   };
 
+  const onToggleChanged = (x: 'ALL' | 'STARRED') => {
+    setLoading(true);
+    setToggleSelected(x);
+    fetchCryptoCurrenctyList(1, x);
+  };
+
   const onRefresh = () => {
     setRefreshing(true);
-    fetchCryptoCurrenctyList();
+    fetchCryptoCurrenctyList(1, toggleSelected);
   };
 
   const onEndReached = () => setStart(DEFAULT_LIMIT + start);
@@ -74,7 +102,7 @@ const useCryptoCurrencies = () => {
     if (!cryptoCurrencies.length) {
       setLoading(true);
     }
-    fetchCryptoCurrenctyList(start);
+    fetchCryptoCurrenctyList(start, toggleSelected);
   }, [start]);
 
   return {
@@ -84,6 +112,9 @@ const useCryptoCurrencies = () => {
     setCryptoCurrencyInfo,
     onRefresh,
     onEndReached,
+    toggleSelected,
+
+    onToggleChanged,
   };
 };
 

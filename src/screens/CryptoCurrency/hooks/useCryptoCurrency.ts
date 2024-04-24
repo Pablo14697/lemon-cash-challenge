@@ -8,7 +8,7 @@ import { CRIPTO_CURRENCY_INFO_ENDPOINT } from '../../../../hardcoded';
 import {
   getPreferredCryptoCurrencies,
   updatePreferredCryptoCurrencies,
-} from '../components/Header/utils/preferredCurrencyStorage';
+} from '../../../utils/preferredCurrencyStorage';
 
 // Types
 import { CriptoCurrencyInfo } from '../CryptoCurrency.types';

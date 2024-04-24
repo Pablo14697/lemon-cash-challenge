@@ -5,12 +5,12 @@ import { FlatList, SafeAreaView, View } from 'react-native';
 import styles from './styles';
 
 // Components
-import { Item } from './components';
+import { HomeHeader, Item } from './components';
 import { Loading } from '../../components';
 
 // Hooks
 import { useNavigation } from '../../navigation/hooks';
-import useCryptoCurrencies from './hooks/useFetchCryptoCurrencies';
+import useCryptoCurrencies from './hooks/useCryptoCurrencies';
 
 // Types
 import { CryptoCurrencyInfoType } from '../../types/CryptoCurrency';
@@ -24,6 +24,8 @@ const Home = () => {
     setCryptoCurrencyInfo,
     onRefresh,
     onEndReached,
+    toggleSelected,
+    onToggleChanged,
   } = useCryptoCurrencies();
 
   const handleItemPressed = (
@@ -52,20 +54,26 @@ const Home = () => {
 
   return (
     <SafeAreaView style={styles.safeAreaViewContainer}>
-      {loading ? (
-        <Loading />
-      ) : (
-        <FlatList
-          onRefresh={onRefresh}
-          refreshing={refreshing}
-          data={cryptoCurrencies}
-          renderItem={renderItem}
-          ItemSeparatorComponent={() => <View style={styles.separatorItem} />}
-          contentContainerStyle={styles.flatListContentContainerStyle}
-          onEndReached={onEndReached}
-          keyExtractor={item => item.id}
-        />
-      )}
+      <HomeHeader
+        toggleSelected={toggleSelected}
+        setToggleSelected={onToggleChanged}
+      />
+      <View style={styles.contentContainer}>
+        {loading ? (
+          <Loading />
+        ) : (
+          <FlatList
+            onRefresh={onRefresh}
+            refreshing={refreshing}
+            data={cryptoCurrencies}
+            renderItem={renderItem}
+            ItemSeparatorComponent={() => <View style={styles.separatorItem} />}
+            contentContainerStyle={styles.flatListContentContainerStyle}
+            onEndReached={onEndReached}
+            keyExtractor={item => item.id}
+          />
+        )}
+      </View>
     </SafeAreaView>
   );
 };

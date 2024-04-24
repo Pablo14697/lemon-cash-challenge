@@ -22,7 +22,7 @@ interface Props {
 const Item = ({ info, onPress }: Props) => {
   const { name, id, symbol, price } = info;
   const uri = `${CRIPTO_CURRENCY_LOGO_ENDPOINT}/${id}.png`;
-  const currentPrice = price.toFixed(2);
+  const currentPrice = price?.toFixed(2);
 
   return (
     <Pressable onPress={onPress}>

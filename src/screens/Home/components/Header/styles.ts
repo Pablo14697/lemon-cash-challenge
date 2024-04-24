@@ -1,30 +1,47 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  safeAreaViewContainer: {
-    backgroundColor: '#fafafa',
-  },
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     width: '100%',
     height: 60,
-    borderBottomWidth: 0.2,
     paddingLeft: 10,
     paddingRight: 20,
+    backgroundColor: '#ffffff',
   },
-
-  titleContainer: {
-    width: '50%',
+  toggleContainer: {
     flexDirection: 'row',
+    width: '60%',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    gap: 5,
+  },
+  toggleButtonActive: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 40,
+    width: '35%',
+
+    paddingHorizontal: 10,
+    backgroundColor: '#fafafa',
+
+    borderRadius: 10,
+  },
+  toggleButtonInactive: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 40,
+    width: '35%',
+    borderColor: '#fafafa',
+    borderWidth: 1,
+
+    paddingHorizontal: 10,
+    borderRadius: 10,
   },
   logoutButton: {
     flexDirection: 'row',
-    gap: 10,
-    width: '50%',
+    width: '40%',
     alignItems: 'center',
     justifyContent: 'flex-end',
   },

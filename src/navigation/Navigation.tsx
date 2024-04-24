@@ -10,7 +10,6 @@ import { CryptoCurrency, Home, LogIn as LogInScreen } from '../screens';
 
 // Components
 import { CryptoCurrencyHeader } from '../screens/CryptoCurrency/components';
-import { HomeHeader } from '../screens/Home/components';
 
 // Context
 import { AuthContext } from '../providers/AuthProvider/AuthProvider';
@@ -35,9 +34,7 @@ const Navigation = () => {
             <Screen
               name="Home"
               component={Home}
-              options={() => ({
-                header: () => <HomeHeader />,
-              })}
+              options={{ headerShown: false }}
             />
             <Screen
               name="CryptoCurrency"

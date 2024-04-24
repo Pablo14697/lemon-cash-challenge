@@ -2,7 +2,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Types
-import { CryptoCurrencyInfoType } from '../../../../../types/CryptoCurrency';
+import { CryptoCurrencyInfoType } from '../types/CryptoCurrency';
 
 const PREFERRED_CRIPTO_CURRENCIES_KEY = 'PREFERRED_CRIPTO_CURRENCIES_KEY';
 
