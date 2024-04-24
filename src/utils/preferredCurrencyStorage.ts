@@ -32,7 +32,7 @@ export const removePreferredCryptoCurrencies = async (
   cryptoCurrency: CryptoCurrencyInfoType,
 ) => {
   const preferredCryptoCurrencies = await getPreferredCryptoCurrencies();
-  const cryptoCurrencyIndex = preferredCryptoCurrencies.indexOf(
+  const cryptoCurrencyIndex = preferredCryptoCurrencies.findIndex(
     (preferredCryptoCurrency: CryptoCurrencyInfoType) =>
       preferredCryptoCurrency.id === cryptoCurrency.id,
   );
@@ -49,6 +49,11 @@ export const removePreferredCryptoCurrencies = async (
   );
 };
 
-export const updatePreferredCryptoCurrencies = async ARRAY => {
-  await AsyncStorage.setItem(PREFERRED_CRIPTO_CURRENCIES_KEY, ARRAY);
+export const updatePreferredCryptoCurrencies = async (
+  newPreferredCryptoCurrencies: CryptoCurrencyInfoType[],
+) => {
+  await AsyncStorage.setItem(
+    PREFERRED_CRIPTO_CURRENCIES_KEY,
+    JSON.stringify(newPreferredCryptoCurrencies),
+  );
 };

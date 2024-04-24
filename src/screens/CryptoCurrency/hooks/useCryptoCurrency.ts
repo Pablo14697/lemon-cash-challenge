@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react';
 
 // Utils
 import { CRIPTO_CURRENCY_INFO_ENDPOINT } from '../../../../env';
+import API from '../../../api';
 
 // Context
 import {
@@ -13,7 +14,6 @@ import {
 // Types
 import { CriptoCurrencyInfo } from '../CryptoCurrency.types';
 import { CryptoCurrencyContext } from '../../../providers/CryptoCurrencyProvider/CryptoCurrencyProvider';
-import API from '../../../api';
 
 type ResponseAPI = { data: Record<string, CriptoCurrencyInfo> };
 
@@ -61,9 +61,8 @@ const useCryptoCurrency = () => {
         price: cryptoInfo.quote?.USD?.price,
       };
     }
-    await updatePreferredCryptoCurrencies(
-      JSON.stringify(preferredCryptoCurrencies),
-    );
+
+    await updatePreferredCryptoCurrencies(preferredCryptoCurrencies);
   };
 
   const fetchCryptoCurrency = async () => {
