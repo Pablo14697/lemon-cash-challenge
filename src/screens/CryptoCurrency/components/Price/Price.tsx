@@ -11,7 +11,7 @@ import styles from './styles';
 import formatNumberWithCommas from '../../../../utils/formatNumberWithCommas';
 
 // Utils
-import { CRIPTO_CURRENCY_LOGO_ENDPOINT } from '../../../../../hardcoded';
+import { CRIPTO_CURRENCY_LOGO_ENDPOINT } from '../../../../../env';
 
 const Price = ({ id, value }: { id: string; value: number }) => (
   <View style={styles.firstRowContainer}>

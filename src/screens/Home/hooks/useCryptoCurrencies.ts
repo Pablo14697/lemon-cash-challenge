@@ -6,7 +6,7 @@ import { CryptoCurrencyContext } from '../../../providers/CryptoCurrencyProvider
 
 // Utils
 import API from '../../../api';
-import { CRIPTO_CURRENCIES_ENDPOINT } from '../../../../hardcoded';
+import { CRIPTO_CURRENCIES_ENDPOINT } from '../../../../env';
 import { getPreferredCryptoCurrencies } from '../../../utils/preferredCurrencyStorage';
 
 // Types
@@ -38,6 +38,7 @@ const useCryptoCurrencies = () => {
   const [cryptoCurrencies, setCryptoCurrencies] = useState<
     CryptoCurrencyInfoType[]
   >([]);
+  const [error, setError] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [start, setStart] = useState(1);
@@ -48,6 +49,7 @@ const useCryptoCurrencies = () => {
     start = 1,
     toggleSelected = 'ALL',
   ) => {
+    setError(false);
     try {
       if (toggleSelected === 'ALL') {
         const response = await API.get(
@@ -79,7 +81,7 @@ const useCryptoCurrencies = () => {
         setCryptoCurrencies(data);
       }
     } catch (error) {
-      console.log(error);
+      setError(true);
     }
     setLoading(false);
     setRefreshing(false);
@@ -113,8 +115,8 @@ const useCryptoCurrencies = () => {
     onRefresh,
     onEndReached,
     toggleSelected,
-
     onToggleChanged,
+    error,
   };
 };
 

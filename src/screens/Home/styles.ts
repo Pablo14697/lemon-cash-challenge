@@ -5,9 +5,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   separatorItem: { height: 10, width: '100%' },
-  flatListContentContainerStyle: { paddingHorizontal: 20, marginTop: 10 },
+  flatListContentContainerStyle: {
+    height: '100%',
+    paddingHorizontal: 20,
+    marginTop: 10,
+  },
   contentContainer: {
-    backgroundColor: '#fafafa',
+    backgroundColor: '#ffffff',
   },
 });
 

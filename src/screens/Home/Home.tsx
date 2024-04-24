@@ -6,7 +6,7 @@ import styles from './styles';
 
 // Components
 import { HomeHeader, Item } from './components';
-import { Loading } from '../../components';
+import { GenericIssue, Loading } from '../../components';
 
 // Hooks
 import { useNavigation } from '../../navigation/hooks';
@@ -26,6 +26,7 @@ const Home = () => {
     onEndReached,
     toggleSelected,
     onToggleChanged,
+    error,
   } = useCryptoCurrencies();
 
   const handleItemPressed = (
@@ -61,6 +62,8 @@ const Home = () => {
       <View style={styles.contentContainer}>
         {loading ? (
           <Loading />
+        ) : error || cryptoCurrencies.length === 0 ? (
+          <GenericIssue error={error} />
         ) : (
           <FlatList
             onRefresh={onRefresh}

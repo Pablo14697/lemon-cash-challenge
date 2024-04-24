@@ -21,7 +21,7 @@ const FONT_FAMILY = {
 
 interface Props {
   fontWeight?: 'light' | 'regular' | 'medium' | 'bold';
-  fontSize?: 12 | 14 | 16 | 24 | 36;
+  fontSize?: 12 | 14 | 16 | 20 | 24 | 36;
   color?:
     | 'darkGray'
     | 'mediumGray'

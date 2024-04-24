@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     height: 60,
     paddingLeft: 10,
     paddingRight: 20,
-    borderBottomWidth: 0.2,
   },
   backButton: { width: '10%', justifyContent: 'center' },
   backIcon: { height: 25, width: 25 },

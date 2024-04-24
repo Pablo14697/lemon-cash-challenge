@@ -8,7 +8,7 @@ import { Typography } from '../../../../components';
 import styles from './styles';
 
 // Utils
-import { CRIPTO_CURRENCY_LOGO_ENDPOINT } from '../../../../../hardcoded';
+import { CRIPTO_CURRENCY_LOGO_ENDPOINT } from '../../../../../env';
 import formatNumberWithCommas from '../../../../utils/formatNumberWithCommas';
 
 // Types

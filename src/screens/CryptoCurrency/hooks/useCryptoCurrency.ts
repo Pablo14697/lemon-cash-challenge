@@ -2,7 +2,7 @@
 import { useState, useEffect, useContext } from 'react';
 
 // Utils
-import { CRIPTO_CURRENCY_INFO_ENDPOINT } from '../../../../hardcoded';
+import { CRIPTO_CURRENCY_INFO_ENDPOINT } from '../../../../env';
 
 // Context
 import {
@@ -19,6 +19,7 @@ type ResponseAPI = { data: Record<string, CriptoCurrencyInfo> };
 
 const useCryptoCurrency = () => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [info, setInfo] = useState<CriptoCurrencyInfo>({
     id: null,
@@ -66,6 +67,7 @@ const useCryptoCurrency = () => {
   };
 
   const fetchCryptoCurrency = async () => {
+    setError(false);
     try {
       const response = (await API.get(
         `${CRIPTO_CURRENCY_INFO_ENDPOINT}?symbol=${cryptoCurrencyInfo?.symbol}`,
@@ -77,7 +79,7 @@ const useCryptoCurrency = () => {
         await updatePreferredInfo(cryptoInfo);
       }
     } catch (error) {
-      console.log(error);
+      setError(true);
     }
     setLoading(false);
     setRefreshing(false);
@@ -98,7 +100,7 @@ const useCryptoCurrency = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return { info, loading, refreshing, onRefresh, cryptoCurrencyInfo };
+  return { info, loading, refreshing, onRefresh, cryptoCurrencyInfo, error };
 };
 
 export default useCryptoCurrency;

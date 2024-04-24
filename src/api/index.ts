@@ -1,4 +1,4 @@
-import { API_KEY } from '../../hardcoded';
+import { API_KEY } from '../../env';
 
 const API = {
   get: async (endpoint: string): Promise<unknown> => {

@@ -3,7 +3,7 @@ import CryptoCurrencyProvider from './CryptoCurrencyProvider';
 import AuthProvider from './AuthProvider';
 
 // Utils
-import { WEB_CLIENT_ID } from '../../hardcoded';
+import { WEB_CLIENT_ID } from '../../env';
 
 // Library
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
