@@ -1,1 +1,1 @@
-yarn lint && yarn prettier 
+yarn lint && yarn prettier && git add .

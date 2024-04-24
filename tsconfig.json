@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "es2015",
-    "types": ["react-native" ],
+    "types": ["react-native"],
     "lib": [
       "es2019",
       "es2020.bigint",
@@ -36,9 +36,5 @@
     // Causes issues with package.json "exports"
     "forceConsistentCasingInFileNames": false
   },
-  "exclude": [
-    "node_modules",
-    "babel.config.js",
-    "metro.config.mjs",
-   ]
+  "exclude": ["node_modules", "babel.config.js", "metro.config.mjs"]
 }
