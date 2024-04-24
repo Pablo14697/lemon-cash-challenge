@@ -1,15 +1,18 @@
 // React Native
 import { Image, Pressable, View } from 'react-native';
 
+// Components
+import { Typography } from '../../../../components';
+
 // Styles
 import styles from './styles';
 
 // Utils
 import { CRIPTO_CURRENCY_LOGO_ENDPOINT } from '../../../../../hardcoded';
+import formatNumberWithCommas from '../../../../utils/formatNumberWithCommas';
 
 // Types
 import { CryptoCurrencyInfoType } from '../../../../types/CryptoCurrency';
-import { Typography } from '../../../../components';
 
 interface Props {
   info: CryptoCurrencyInfoType;
@@ -31,14 +34,13 @@ const Item = ({ info, onPress }: Props) => {
           <Typography fontWeight="medium" fontSize={16}>
             {symbol}
           </Typography>
-
           <Typography color="mediumGray" fontSize={14}>
             {name}
           </Typography>
         </View>
         <View style={styles.priceContainer}>
           <Typography fontWeight="medium" fontSize={16}>
-            {currentPrice} USD
+            {formatNumberWithCommas(currentPrice)} USD
           </Typography>
         </View>
       </View>

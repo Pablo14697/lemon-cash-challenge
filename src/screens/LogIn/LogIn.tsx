@@ -2,7 +2,11 @@
 import { useContext, useState } from 'react';
 
 // React Native
-import { Image, View, Pressable, ActivityIndicator } from 'react-native';
+import { Image, View, Pressable } from 'react-native';
+
+// Components
+import { Loading } from './components';
+import { Typography } from '../../components';
 
 // Styles
 import styles from './styles';
@@ -15,21 +19,15 @@ import { Logo } from '../../assets/branding';
 
 // Google Sign In
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { Typography } from '../../components';
 
 interface Props {
   loading: boolean;
 }
 
-const Loading = () => (
-  <View style={styles.loadingContainer}>
-    <ActivityIndicator size="small" color="#121212" />
-  </View>
-);
-
 const LogIn = ({ loading = false }: Props) => {
   const [error, setError] = useState(false);
   const { setNewToken } = useContext(AuthContext);
+
   const signIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
@@ -49,7 +47,7 @@ const LogIn = ({ loading = false }: Props) => {
         <Loading />
       ) : (
         <View style={styles.loginButtonContainer}>
-          <Pressable onPress={() => signIn()} style={styles.loginButton}>
+          <Pressable onPress={signIn} style={styles.loginButton}>
             <Typography fontSize={16} color="white" fontWeight="medium">
               Continue with Google
             </Typography>

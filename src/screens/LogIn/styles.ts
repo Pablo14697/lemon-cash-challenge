@@ -16,13 +16,6 @@ const styles = StyleSheet.create({
     width: '40%',
     objectFit: 'contain',
   },
-  loadingContainer: {
-    width: '100%',
-    height: 60,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   loginButtonContainer: { width: '100%', alignItems: 'center', gap: 10 },
   loginButton: {
     backgroundColor: '#121212',
